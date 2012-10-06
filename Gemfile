@@ -6,6 +6,7 @@ gem 'rails', '3.2.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'sass'
 gem 'haml-rails'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
@@ -20,6 +21,10 @@ group :assets do
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :production do
+  gem 'thin'
 end
 
 gem 'jquery-rails'

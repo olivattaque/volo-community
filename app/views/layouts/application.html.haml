@@ -9,24 +9,16 @@
     .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
         .container
-          %a.brand{:href => "#"}
-            Volo Community
+          = link_to "Volo Community", index_path, :class => 'brand'
           %ul.nav
             %li
-              %a{:href => "http://volo-airsport.net/blog/"}
-                Users
-            %li
-              %a{:href => "http://volo-airsport.net/blog/about-2/"}
-                About
-            %li
-              %a{:href => "http://volo-airsport.net/blog/purchase-donate/"}
-                Purchase & Donate
+              = link_to "About", about_path
           .pull-right
             - if user_signed_in?
               .navbar-text
-                Signed in as #{current_user.email}. Not you?
+                Signed in as #{current_user.username}.
+                \#{link_to "Account", edit_user_registration_path}
                 \#{link_to "Sign out", destroy_user_session_path, :method => :delete}
-                \#{link_to "Destroy", user_registration_path, :confirm => 'Are you sure you want to destroy your account?', :method => :delete}
             - else
               %ul.nav
                 %li

@@ -1,6 +1,16 @@
+.hero-unit
+  = image_tag 'volo_cover.jpg', :height => '50', :width => '1050', :force => true, :title => 'made by Declan Coleman'
+
 .row
   .span8
-  .span4.offset10
+    %h1 Changes for 0.02
+
+    %ul
+      %li Mac version released. Default controls are set for Tattie Bogle’s Xbox 360 driver
+      %li Lowered Joint Iteration Count for player ragdoll to increase performance at the cost of slight loss of joint stability
+      %li Created a lower-resolution terrain to increase performance
+  
+  .span4
     %h1 Users
     - for user in @users
       = link_to image_tag(user.gravatar_url, :title => user.username),user

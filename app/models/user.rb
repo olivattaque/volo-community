@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include Gravtastic
+  extend FriendlyId
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -8,6 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   gravtastic :secure => true, :default => '#{Rails.root}/public/images/gravatar_default.jpeg'
+  friendly_id :username
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username

@@ -1,2 +1,6 @@
-%h1 Pages#index
-%p Find me in app/views/pages/index.html.haml
+.row
+  .span8
+  .span4.offset10
+    %h1 Users
+    - for user in @users
+      = link_to image_tag(user.gravatar_url, :title => user.username),user

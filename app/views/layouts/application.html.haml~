@@ -6,30 +6,40 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .navbar.navbar-static-top
+    .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
-        %a.brand{:href => "#"} Volo Community
-        %ul.nav
-          %li.active
-            %a{:href => "#"} Maps
-          %li
-            %a{:href => "#"} Highscores
-          %li
-            %a{:href => "#"} Achievements
-          - if user_signed_in?
-            %p.navbar-text
-              Signed in as #{current_user.email}. Not you? \
-              #{link_to "Sign out", destroy_user_session_path, :method => :delete}
-          - else
+        .container
+          %a.brand{:href => "#"}
+            Volo Community
+          %ul.nav
             %li
-              = link_to "Sign up", new_user_registration_path
+              %a{:href => "http://volo-airsport.net/blog/"}
+                Users
             %li
-              #{link_to "sign in", new_user_session_path}
-            
-    = yield
+              %a{:href => "http://volo-airsport.net/blog/about-2/"}
+                About
+            %li
+              %a{:href => "http://volo-airsport.net/blog/purchase-donate/"}
+                Purchase & Donate
+          .pull-right
+            - if user_signed_in?
+              .navbar-text
+                Signed in as #{current_user.email}. Not you?
+                \#{link_to "Sign out", destroy_user_session_path, :method => :delete}
+                \#{link_to "Destroy", user_registration_path, :confirm => 'Are you sure you want to destroy your account?', :method => :delete}
+                <%= link_to 'Destroy', user_registration_path, :confirm => 'Are you sure you want to destroy your account?', :method => :delete %>
+            - else
+              %ul.nav
+                %li
+                  = link_to "Sign up", new_user_registration_path
+                %li
+                  #{link_to "sign in", new_user_session_path}
     
-    %div
-      - if flash[:notice]
-        %p.notice= flash[:notice]
-      - if flash[:error]
-        %p.error= flash[:error]
+    .container
+      = yield
+    
+      %div
+        - if flash[:notice]
+          %p.notice= flash[:notice]
+        - if flash[:error]
+          %p.error= flash[:error]

@@ -66,12 +66,12 @@ Volocommunity::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
   ActionMailer::Base.smtp_settings = {
-  :user_name => APP_CONFIG['sendgrid_username'],
-  :password => APP_CONFIG['sendgrid_password'],
-  :domain => "http://volo-community.herokuapp.com/",
-  :address => "smtp.sendgrid.net",
-  :port => 587,
-  :authentication => :plain,
-  :enable_starttls_auto => true
-}
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => "volo-community.herokuapp.com",
+    :address => "smtp.sendgrid.net",
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end

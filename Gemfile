@@ -12,6 +12,8 @@ gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'gravtastic'
 gem 'friendly_id', '~> 4.0.1'
+gem 'acts_as_commentable', '3.0.1'
+gem 'video_info'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -27,6 +29,10 @@ end
 
 group :production do
   gem 'thin'
+end
+
+group :development do
+  gem 'annotate', '>= 2.5.0'
 end
 
 gem 'jquery-rails'

@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: video_informations
+#
+#  id              :integer          not null, primary key
+#  title           :string(255)
+#  description     :text
+#  keywords        :text
+#  duration        :integer
+#  video_url       :string(255)
+#  thumbnail_small :string(255)
+#  thumbnail_large :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  video_id        :string(255)
+#  provider        :string(255)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value

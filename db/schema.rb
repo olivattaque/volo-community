@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121020192630) do
+ActiveRecord::Schema.define(:version => 20121030204233) do
+
+  create_table "comments", :force => true do |t|
+    t.string   "title",            :limit => 50, :default => ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "users", :force => true do |t|
     t.datetime "created_at",                             :null => false
@@ -35,5 +49,26 @@ ActiveRecord::Schema.define(:version => 20121020192630) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "video_informations", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.text     "keywords"
+    t.integer  "duration"
+    t.string   "video_url"
+    t.string   "thumbnail_small"
+    t.string   "thumbnail_large"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "video_id"
+    t.string   "provider"
+  end
+
+  create_table "video_posts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "video_information_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
 
 end

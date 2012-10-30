@@ -1,4 +1,6 @@
 Volocommunity::Application.routes.draw do
+  resources :video_posts
+
   root :to => "pages#index"
   
   devise_for :users

@@ -1,0 +1,4 @@
+= form_tag(video_posts_path, :method => "post") do
+  = label_tag(:video_url, "Video URL :")
+  = text_field_tag(:video_url)
+  = submit_tag("Save")

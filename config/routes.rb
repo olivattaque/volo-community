@@ -8,6 +8,7 @@ Volocommunity::Application.routes.draw do
   
   match '/index' => 'pages#index', :as => 'index'
   match '/about' => 'pages#about', :as => 'about'
+  match '/timeline' => 'pages#timeline', :as => 'timeline'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

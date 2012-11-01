@@ -1,22 +1,21 @@
 %h1 All videos
 
 - @video_posts.each do |video_post|
-  %div
-    %div.floatleft
-      = image_tag(video_post.video_information.thumbnail_small)
-    %div
-      = video_post.video_information.title
-      = link_to 'Show', video_post
-      = link_to 'Edit', edit_video_post_path(video_post)
-      = link_to 'Destroy', video_post, :confirm => 'Are you sure?', :method => :delete
-      %br
-      = video_post.video_information.description
-      %br
-      posted by #{link_to video_post.user.username,video_post.user} 
-    .spacer
-    %hr
+  %ul.videos_list
+    %li
+      = link_to image_tag(video_post.video_information.thumbnail_large, :size => '305x176', :force => true, :class => 'thumbnail'), video_post
+      %div.floatleft
+        = link_to image_tag(video_post.user.gravatar_url(:size => 20), :title => video_post.user.username), video_post.user
+      %div
+        = link_to video_post.video_information.title, video_post
+        %br
+        %p.legend posted by #{link_to video_post.user.username,video_post.user} 
+    
+%br
+.spacer
+= will_paginate @video_posts, :renderer => BootstrapPagination::Rails
     
 
-%br
 
+.spacer
 = link_to 'New Video post', new_video_post_path

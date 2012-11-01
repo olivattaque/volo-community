@@ -1,8 +1,10 @@
 class VideoPostsController < ApplicationController
+  before_filter :redirect_to_signin, :only => [:new,:create]
+  
   # GET /video_posts
   # GET /video_posts.json
   def index
-    @video_posts = VideoPost.all
+    @video_posts = VideoPost.paginate(:page => params[:page], :per_page => 1).order('created_at DESC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +48,7 @@ class VideoPostsController < ApplicationController
     if video_info.valid?
       video_information = VideoInformation.create_from_video_info(video_info, params[:video_url])
       if video_information.save
-        @video_post = current_user.video_posts.build(:video_information_id => video_information)
+        @video_post = current_user.video_posts.build(:video_information_id => video_information.id)
 
         respond_to do |format|
           if @video_post.save

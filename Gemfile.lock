@@ -29,6 +29,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     acts_as_commentable (3.0.1)
+    acts_as_follower (0.1.1)
     annotate (2.5.0)
       rake
     arel (3.0.2)
@@ -83,6 +84,11 @@ GEM
     orm_adapter (0.4.0)
     pg (0.14.1)
     polyglot (0.3.3)
+    public_activity (0.5.0)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      i18n (>= 0.5.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -141,12 +147,16 @@ GEM
       hpricot (~> 0.8.4)
     warden (1.2.1)
       rack (>= 1.0)
+    will_paginate (3.0.3)
+    will_paginate-bootstrap (0.2.1)
+      will_paginate (>= 3.0.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   acts_as_commentable (= 3.0.1)
+  acts_as_follower
   annotate (>= 2.5.0)
   coffee-rails (~> 3.2.1)
   devise
@@ -155,6 +165,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   pg
+  public_activity
   rails (= 3.2.3)
   sass
   sass-rails (~> 3.2.3)
@@ -162,3 +173,5 @@ DEPENDENCIES
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   video_info
+  will_paginate
+  will_paginate-bootstrap

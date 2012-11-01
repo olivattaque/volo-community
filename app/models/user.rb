@@ -23,6 +23,7 @@
 
 class User < ActiveRecord::Base
   include Gravtastic
+  include PublicActivity::Model
   extend FriendlyId
   
   # Include default devise modules. Others available are:
@@ -31,6 +32,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   
+  tracked :owner => proc {|controller, model| model}, :only => [:create]
+    
   gravtastic :secure => true, :default => '#{Rails.root}/public/images/gravatar_default.jpeg'
   friendly_id :username
   
@@ -40,4 +43,12 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username
   
   validates :username, :presence => true, :length => { :in => 2..20 }, :uniqueness => true
+  
+  def confirmation_required?
+    if Rails.env.development?
+      return false
+    else
+      return !confirmed?
+    end
+  end
 end

@@ -11,15 +11,14 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
   
-  def show_embed_video(video_information)
+  def show_embed_video(video_information, options={})
+    width = options[:width] || 640
+    height = options[:height] || 360
+    frameborder = options[:frameborder] || 0
     if video_information.provider == "YouTube"
-      %{<iframe width=400 height=250 src='//www.youtube.com/embed/#{video_information.video_id}' frameborder=0 allowfullscreen></iframe>}
+      %{<iframe width="#{width}" height="#{height}" src='//www.youtube.com/embed/#{video_information.video_id}' frameborder="#{frameborder}" allowfullscreen></iframe>}
     elsif video_information.provider == "Vimeo"
-      %{<iframe src="http://player.vimeo.com/video/#{video_information.video_id}=0&amp;byline=0&amp;portrait=0&amp;autoplay=0" frameborder="0"></iframe>}
+      %{<iframe src="http://player.vimeo.com/video/#{video_information.video_id}" width="#{width}" height="#{height}" frameborder="#{frameborder}" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>}
     end  
-  end
-  
-  def say_hello(text)
-    "#{text}"
   end
 end

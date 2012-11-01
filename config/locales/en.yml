@@ -3,3 +3,9 @@
 
 en:
   hello: "Hello world"
+  
+activity:
+  videopost:
+    create: 'VideoPost has been created'
+    update: 'Someone has edited the article'
+    destroy: 'Some user removed an article!'

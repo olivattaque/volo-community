@@ -9,8 +9,14 @@
       %li Mac version released. Default controls are set for Tattie Bogle’s Xbox 360 driver
       %li Lowered Joint Iteration Count for player ragdoll to increase performance at the cost of slight loss of joint stability
       %li Created a lower-resolution terrain to increase performance
-  
+      
   .span4
-    %h1 Users
-    - for user in @users
-      = link_to image_tag(user.gravatar_url, :title => user.username),user
+    %h1 Timeline
+    - for activity in @activities
+      = render_activity(activity, :layout => "layouts/activity_wrapper")
+  
+  /
+    .span4
+      %h1 Users
+      - for user in @users
+        = link_to image_tag(user.gravatar_url, :title => user.username),user

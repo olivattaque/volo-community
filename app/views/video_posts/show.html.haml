@@ -3,7 +3,7 @@
 %h1= @video_information.title
 = raw(show_embed_video(@video_information))
 %br
-= @video_information.description
+= raw(@video_information.description)
 %br
 = link_to 'Edit', edit_video_post_path(@video_post)
 \|

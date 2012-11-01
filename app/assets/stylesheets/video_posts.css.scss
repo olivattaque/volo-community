@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.videos_list {
+  list-style-type: none;
+}
+.videos_list li {
+  float:left;
+  margin-right: 20px;
+  margin-bottom: 15px;
+  width: 305px;
+}
+.video_thumbnail {
+  display:block;
+  margin-bottom: 5px;
+}
+.video_data {
+  float:left
+}
 .floatleft {
   float:left;
 }

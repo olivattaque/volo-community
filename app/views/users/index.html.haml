@@ -1,0 +1,10 @@
+%h1 All users
+
+- @users.each do |user|
+  %div.userbox
+    = link_to image_tag(user.gravatar_url, :title => user.username), user
+    %br
+    = user.username
+  
+.spacer
+= will_paginate @users, :renderer => BootstrapPagination::Rails

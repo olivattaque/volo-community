@@ -10,6 +10,12 @@
 #
 
 class VideoPost < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked :owner => proc {|controller, model| controller.current_user},
+          :params => {
+            :summary => proc {|controller, model| model.video_information.title}   # by default save truncated summary of the post's body
+          }
+  
   belongs_to :user
   belongs_to :video_information
   

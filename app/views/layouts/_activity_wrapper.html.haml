@@ -1,0 +1,7 @@
+.activity
+  = link_to a.owner.username, a.owner
+  = content_for :action
+  .details
+    %div.avatar
+      = image_tag a.owner.gravatar_url, width: "30", height: "30"
+      = yield

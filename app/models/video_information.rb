@@ -20,16 +20,20 @@ class VideoInformation < ActiveRecord::Base
   has_many :video_posts
   
   def self.create_from_video_info(video_info, url)
-    video_information = self.new
-    video_information.video_id = video_info.video_id
-    video_information.provider = video_info.provider
-    video_information.video_url = url
-    video_information.title = video_info.title
-    video_information.description = video_info.description
-    video_information.keywords = video_info.keywords
-    video_information.duration = video_info.duration
-    video_information.thumbnail_small = video_info.thumbnail_small
-    video_information.thumbnail_large = video_info.thumbnail_large
+    if VideoInformation.exists?(:video_url => url)
+      video_information = VideoInformation.find_by_video_url(url)
+    else
+      video_information = self.new
+      video_information.video_id = video_info.video_id
+      video_information.provider = video_info.provider
+      video_information.video_url = url
+      video_information.title = video_info.title
+      video_information.description = video_info.description
+      video_information.keywords = video_info.keywords
+      video_information.duration = video_info.duration
+      video_information.thumbnail_small = video_info.thumbnail_small
+      video_information.thumbnail_large = video_info.thumbnail_large
+    end
     video_information
   end
 end

@@ -1,0 +1,7 @@
+%h1 Timeline
+
+- for activity in @activities
+  = render_activity(activity, :layout => "layouts/activity_wrapper")
+  
+.spacer
+= will_paginate @activities, :renderer => BootstrapPagination::Rails

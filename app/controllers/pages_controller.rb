@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def index
       @users = User.all
-      @activities = PublicActivity::Activity.all
+      @activities = PublicActivity::Activity.limit(5)
   end
   
   def timeline

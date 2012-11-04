@@ -1,3 +1,29 @@
 %h1 
   = @user.username
-= image_tag(@user.gravatar_url, :title => @user.username)
+%div.floatleft
+  = image_tag(@user.gravatar_url, :title => @user.username)
+%div
+  - if @user != current_user
+    - if !current_user.following?(@user)
+      = button_to "Follow", :action => "follow"
+    - else
+      = button_to "Unfollow", :action => "follow"
+  #{@user.follow_count} followers
+  %br
+  #{@user.video_posts.count} videos
+ 
+.spacer
+
+%h1 #{@user.username}'s videos
+%ul.videos_list
+  - @user.video_posts.each do |video_post|
+    %li
+      = link_to image_tag(video_post.video_information.thumbnail_large, :size => '305x176', :force => true, :class => 'thumbnail'), video_post
+      %div
+        = link_to video_post.video_information.title, video_post
+    
+.spacer
+
+%h1 #{@user.username}'s activities
+- for activity in @activities
+  = render_activity(activity, :layout => "layouts/activity_wrapper")

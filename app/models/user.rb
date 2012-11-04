@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   include Gravtastic
   include PublicActivity::Model
   extend FriendlyId
+  acts_as_followable
+  acts_as_follower
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

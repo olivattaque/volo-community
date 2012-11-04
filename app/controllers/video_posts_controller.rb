@@ -1,5 +1,6 @@
 class VideoPostsController < ApplicationController
   before_filter :redirect_to_signin, :only => [:new,:create]
+  impressionist :actions=>[:show], :unique => [:session_hash]
   
   # GET /video_posts
   # GET /video_posts.json
@@ -17,6 +18,8 @@ class VideoPostsController < ApplicationController
   def show
     @video_post = VideoPost.find(params[:id])
     @video_information = @video_post.video_information
+    @comment = Comment.new
+    @comments = @video_post.comments
 
     respond_to do |format|
       format.html # show.html.erb

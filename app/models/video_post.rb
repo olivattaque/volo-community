@@ -15,6 +15,8 @@ class VideoPost < ActiveRecord::Base
           :params => {
             :summary => proc {|controller, model| model.video_information.title}   # by default save truncated summary of the post's body
           }
+  acts_as_commentable
+  is_impressionable
   
   belongs_to :user
   belongs_to :video_information

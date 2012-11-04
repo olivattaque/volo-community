@@ -1,10 +1,14 @@
 Volocommunity::Application.routes.draw do
-  resources :video_posts
-
   root :to => "pages#index"
   
   devise_for :users
-  resources :users, :only => [:index, :show]
+  resources :users, :only => [:index, :show] do
+    post 'follow', :on => :member
+  end
+  
+  resources :video_posts do
+    resources :comments, only: [:create, :update, :edit, :destroy]
+  end
   
   match '/index' => 'pages#index', :as => 'index'
   match '/about' => 'pages#about', :as => 'about'

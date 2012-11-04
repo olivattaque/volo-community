@@ -3,8 +3,19 @@
 %h1= @video_information.title
 = raw(show_embed_video(@video_information))
 %br
+#{@video_post.impressionist_count} views
+%br
 = raw(@video_information.description)
 %br
+
+%h1 #{@video_post.comments.size} Comments
+= render @video_post.comments
+
+- if user_signed_in?
+  = simple_form_for [@video_post, @comment] do |f|
+    = f.input :comment, label: false
+    = f.button :submit, class: 'btn-success pull-right'
+
 = link_to 'Edit', edit_video_post_path(@video_post)
 \|
 = link_to 'Back', video_posts_path

@@ -24,10 +24,12 @@ class UsersController < ApplicationController
   
   def follow
     user = User.find(params[:id])
-    if current_user.following?(user)
-      current_user.stop_following(user)
-    else
-      current_user.follow(user)
+    if current_user != user
+      if current_user.following?(user)
+        current_user.stop_following(user)
+      else
+        current_user.follow(user)
+      end
     end
     redirect_to user
   end

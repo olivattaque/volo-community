@@ -1,6 +1,6 @@
 class VideoPostsController < ApplicationController
   before_filter :redirect_to_signin, :only => [:new,:create]
-  impressionist :actions=>[:show], :unique => [:session_hash]
+  impressionist :actions=>[:show], :unique => [:impressionable_type, :impressionable_id, :session_hash]
   
   # GET /video_posts
   # GET /video_posts.json
@@ -100,5 +100,17 @@ class VideoPostsController < ApplicationController
       format.html { redirect_to video_posts_url }
       format.json { head :no_content }
     end
+  end
+  
+  def like
+    @video_post = VideoPost.find(params[:id])
+    if current_user != user
+      if current_user.voted_up_on?(@video_post)
+        current_user.dislikes @video_post
+      else
+        current_user.likes @video_post
+      end
+    end
+    redirect_to @video_post
   end
 end

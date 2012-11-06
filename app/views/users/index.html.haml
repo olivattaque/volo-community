@@ -2,7 +2,7 @@
 
 - @users.each do |user|
   %div.userbox
-    = link_to image_tag(user.gravatar_url, :title => user.username), user
+    = user_avatar(user, :size => 80)
     %br
     = user.username
   

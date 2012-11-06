@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   extend FriendlyId
   acts_as_followable
   acts_as_follower
+  acts_as_voter
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

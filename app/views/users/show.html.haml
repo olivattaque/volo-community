@@ -8,7 +8,7 @@
       = button_to "Follow", :action => "follow"
     - else
       = button_to "Unfollow", :action => "follow"
-  #{@user.follow_count} followers
+  #{@user.followers_count} followers
   %br
   #{@user.video_posts.count} videos
  
@@ -24,6 +24,12 @@
     
 .spacer
 
-%h1 #{@user.username}'s activities
+%h1 #{@user.username}'s activity
 - for activity in @activities
   = render_activity(activity, :layout => "layouts/activity_wrapper")
+  
+%h1 #{@user.username}'s followers
+%ul.videos_list
+  - @user.user_followers.each do |user|
+    %li
+      = user_avatar(user)

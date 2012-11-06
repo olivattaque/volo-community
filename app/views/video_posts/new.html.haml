@@ -1,4 +1,11 @@
-%h1 New video_post
+%h1 If your video isn't already uploaded on youtube or vimeo
+%p Please upload your video on youtube or vimeo and come back here with the url
+= link_to 'http://www.youtube.com/my_videos_upload'
+%br
+= link_to 'https://vimeo.com/upload'
+
+%h1 If your video is already uploaded
+%p Title and description will be taken from youtube
 
 = render 'form'
 

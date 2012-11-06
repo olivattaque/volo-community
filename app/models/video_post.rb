@@ -17,6 +17,7 @@ class VideoPost < ActiveRecord::Base
           }
   acts_as_commentable
   is_impressionable
+  acts_as_votable
   
   belongs_to :user
   belongs_to :video_information

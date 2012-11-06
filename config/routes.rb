@@ -8,6 +8,7 @@ Volocommunity::Application.routes.draw do
   
   resources :video_posts do
     resources :comments, only: [:create, :update, :edit, :destroy]
+    post 'like', :on => :member
   end
   
   match '/index' => 'pages#index', :as => 'index'

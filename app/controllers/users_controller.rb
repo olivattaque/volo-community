@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :redirect_to_signin, :only => [:follow]
+  
   # GET /users
   # GET /users.json
   def index
@@ -14,7 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @activities = PublicActivity::Activity.order("created_at DESC").where(owner_type: "User", owner_id: @user.id).limit(5)
+    @activities = PublicActivity::Activity.where(owner_type: "User", owner_id: @user.id).limit(5).order("created_at DESC")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +31,7 @@ class UsersController < ApplicationController
         current_user.stop_following(user)
       else
         current_user.follow(user)
+        user.create_activity(:follow, owner: current_user)
       end
     end
     redirect_to user

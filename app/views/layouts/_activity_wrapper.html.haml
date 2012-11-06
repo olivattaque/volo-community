@@ -2,6 +2,6 @@
   = link_to a.owner.username, a.owner
   = content_for :action
   .details
-    %div.avatar
+    %div
       = user_avatar(a.owner, :size => 30)
       = yield

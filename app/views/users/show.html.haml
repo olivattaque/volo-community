@@ -3,11 +3,14 @@
 %div.floatleft
   = image_tag(@user.gravatar_url, :title => @user.username)
 %div
-  - if @user != current_user
-    - if !current_user.following?(@user)
-      = button_to "Follow", :action => "follow"
-    - else
-      = button_to "Unfollow", :action => "follow"
+  - if user_signed_in?
+    - if @user != current_user
+      - if !current_user.following?(@user)
+        = button_to "Follow", :action => "follow"
+      - else
+        = button_to "Unfollow", :action => "follow"
+  - else
+    = button_to "Follow", :action => "follow"
   #{@user.followers_count} followers
   %br
   #{@user.video_posts.count} videos

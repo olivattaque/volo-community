@@ -1,5 +1,5 @@
 class VideoPostsController < ApplicationController
-  before_filter :redirect_to_signin, :only => [:new,:create]
+  before_filter :redirect_to_signin, :except => [:index,:show]
   impressionist :actions=>[:show], :unique => [:impressionable_type, :impressionable_id, :session_hash]
   
   # GET /video_posts
@@ -104,11 +104,12 @@ class VideoPostsController < ApplicationController
   
   def like
     @video_post = VideoPost.find(params[:id])
-    if current_user != user
+    if current_user != @video_post.user
       if current_user.voted_up_on?(@video_post)
         current_user.dislikes @video_post
       else
         current_user.likes @video_post
+        @video_post.create_activity(:like, owner: current_user)
       end
     end
     redirect_to @video_post

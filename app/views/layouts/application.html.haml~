@@ -42,5 +42,5 @@
           %p.notice= flash[:notice]
         - if flash[:error]
           %p.error= flash[:error]
-          
+      %br    
       = yield

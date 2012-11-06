@@ -6,11 +6,14 @@
 #{@video_post.impressionist_count} views
 %br
 #{@video_post.likes.size} like
-- if current_user != @video_post.user
-  - if current_user.voted_up_on?(@video_post)
-    = button_to "UnLike", :action => "like"
-  - else
-    = button_to "Like", :action => "like"
+- if user_signed_in?
+  - if current_user != @video_post.user
+    - if current_user.voted_up_on?(@video_post)
+      = button_to "UnLike", :action => "like"
+    - else
+      = button_to "Like", :action => "like"
+- else
+  = button_to "Like", :action => "like"
 %br
 = raw(@video_information.description)
 %br
